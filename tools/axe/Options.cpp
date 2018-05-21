@@ -53,6 +53,7 @@ static void printUsage(const char *ProgName) {
   "  --rom FILE                  Specify boot rom.\n"
   "  --max-cycles <n>            Exit after <n> cycles\n"
   "  -t                          Enable instruction tracing.\n"
+  "  --trace-file FILE           Log trace output to a file.\n"
   "  --trace-cycles              Display cycle count when tracing.\n"
   "  --time                      Display elapsed time on exit.\n"
   "  --stats                     Display simulator statistics on exit.\n"
@@ -234,6 +235,14 @@ void Options::parse(int argc, char **argv)
         std::exit(1);
       }
       vcdFile = argv[i + 1];
+      i++;
+    } else if (arg == "--trace-file") {
+      if (i + 1 > argc) {
+        printUsage(argv[0]);
+        std::exit(1);
+      }
+      tracing = true;
+      traceFile = argv[i + 1];
       i++;
     } else if (arg == "--loopback") {
       if (i + 2 >= argc) {

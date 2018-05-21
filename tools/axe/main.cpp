@@ -31,6 +31,7 @@
 #include "XEReader.h"
 #include "Property.h"
 #include "LoggingTracer.h"
+#include "FileLoggingTracer.h"
 #include "StatsTracer.h"
 #include "DelegatingTracer.h"
 #include "CheckPacketOvertakeTracer.h"
@@ -138,7 +139,11 @@ createTracerFromOptions(const Options &options)
 {
   std::vector<Tracer *> tracers;
   if (options.tracing) {
-    tracers.push_back(new LoggingTracer(options.traceCycles, options.useColour));
+    if (options.traceFile.empty()) {
+      tracers.push_back(new LoggingTracer(options.traceCycles, options.useColour));
+    } else {
+      tracers.push_back(new FileLoggingTracer(options.traceFile, options.traceCycles));
+    }
   }
   if (options.stats) {
     tracers.push_back(new StatsTracer);

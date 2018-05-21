@@ -105,6 +105,8 @@ add_library(axe
   Lock.h
   LoggingTracer.cpp
   LoggingTracer.h
+  FileLoggingTracer.cpp
+  FileLoggingTracer.h
   NetworkLink.h
   NetworkLink.cpp
   ${NETWORK_LINK_TAP_FILES}

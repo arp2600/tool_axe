@@ -29,6 +29,7 @@ struct Options {
   const char *file;
   std::string rom;
   std::string vcdFile;
+  std::string traceFile;
   bool tracing;
   bool traceCycles;
   bool time;
